@@ -14,8 +14,6 @@ fn main() {
 		panic(err)
 	}
 	for i in inputs {
-		// The match starts at the 0th index and ends at the 5th index
-		// The output of match_string is thus 0, 5
 		re.match_string(i)
 		// re.groups.len will be 8 because there are 4 capture groups and
 		// each index in re.groups []int will have the capture groups
