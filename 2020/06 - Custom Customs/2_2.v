@@ -6,21 +6,25 @@ fn main() {
 	}
 	inputs := file.trim_space().split('\n\n')
 	mut questions := 0
-	mut groups := []map[string]int{}
 	for input in inputs {
 		mut m := map[string]int{}
 		chars := input.replace('\n', '').split('')
+		persons := input.count('\n') + 1
 		for char in chars {
-			// Don't need to count the repeated questions but I'm
-			// trying to predict the follow up puzzle here.
 			if (char in m) == false {
 				m[char] = 1
 			} else {
 				m[char]++
 			}
 		}
-		groups << m
-		questions += m.len
+		if persons == 1 {
+			questions += input.len
+		}
+		for _, value in m {
+			if value == persons && persons != 1 {
+				questions++
+			}
+		}
 	}
 	println('Result: $questions')
 }
